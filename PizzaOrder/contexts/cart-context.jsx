@@ -1,31 +1,13 @@
-import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
+import { createContext, useContext, useMemo, useState } from 'react';
 
-import type { CartItem, Product, SelectedOptions } from '@/types/menu';
 import { buildCartItemKey, calculateUnitPrice } from '@/utils/pricing';
 
-type AddCartPayload = {
-  product: Product;
-  selectedOptions: SelectedOptions;
-  selectedAddOnIds: string[];
-  quantity: number;
-};
+const CartContext = createContext(undefined);
 
-type CartContextValue = {
-  items: CartItem[];
-  totalAmount: number;
-  totalItems: number;
-  addItem: (payload: AddCartPayload) => void;
-  updateQuantity: (key: string, quantity: number) => void;
-  removeItem: (key: string) => void;
-  clearCart: () => void;
-};
+export function CartProvider({ children }) {
+  const [items, setItems] = useState([]);
 
-const CartContext = createContext<CartContextValue | undefined>(undefined);
-
-export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>([]);
-
-  const addItem = ({ product, selectedOptions, selectedAddOnIds, quantity }: AddCartPayload) => {
+  const addItem = ({ product, selectedOptions, selectedAddOnIds, quantity }) => {
     const unitPrice = calculateUnitPrice(product, selectedOptions, selectedAddOnIds);
     const key = buildCartItemKey(product.id, selectedOptions, selectedAddOnIds);
 
@@ -61,7 +43,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  const updateQuantity = (key: string, quantity: number) => {
+  const updateQuantity = (key, quantity) => {
     if (quantity <= 0) {
       setItems((prevItems) => prevItems.filter((item) => item.key !== key));
       return;
@@ -80,7 +62,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     );
   };
 
-  const removeItem = (key: string) => {
+  const removeItem = (key) => {
     setItems((prevItems) => prevItems.filter((item) => item.key !== key));
   };
 

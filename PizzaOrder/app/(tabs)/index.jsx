@@ -10,17 +10,11 @@ import {
   View,
 } from 'react-native';
 
-import type { Category, MenuData, Product } from '@/types/menu';
 import { formatCurrency } from '@/utils/pricing';
 
-const menuData = require('@/data/menu.json') as MenuData;
+const menuData = require('@/data/menu.json');
 
-type ProductCardProps = {
-  product: Product;
-  onPress: () => void;
-};
-
-function ProductCard({ product, onPress }: ProductCardProps) {
+function ProductCard({ product, onPress }) {
   return (
     <Pressable style={styles.productCard} onPress={onPress}>
       <Text style={styles.productName}>{product.name}</Text>
@@ -32,12 +26,9 @@ function ProductCard({ product, onPress }: ProductCardProps) {
 }
 
 export default function HomeScreen() {
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string>('all');
+  const [selectedCategoryId, setSelectedCategoryId] = useState('all');
 
-  const categories = useMemo<Category[]>(
-    () => [{ id: 'all', name: 'All' }, ...menuData.categories],
-    []
-  );
+  const categories = useMemo(() => [{ id: 'all', name: 'All' }, ...menuData.categories], []);
 
   const filteredProducts = useMemo(
     () =>

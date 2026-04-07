@@ -11,28 +11,26 @@ import {
 } from 'react-native';
 
 import { useCart } from '@/contexts/cart-context';
-import type { MenuData, Product, SelectedOptions } from '@/types/menu';
 import { calculateUnitPrice, formatCurrency } from '@/utils/pricing';
 
-const menuData = require('@/data/menu.json') as MenuData;
+const menuData = require('@/data/menu.json');
 
-function getInitialOptions(product: Product): SelectedOptions {
-  return product.optionGroups.reduce<SelectedOptions>((result, group) => {
+function getInitialOptions(product) {
+  return product.optionGroups.reduce((result, group) => {
     result[group.id] = group.options[0]?.id ?? '';
     return result;
   }, {});
 }
 
 export default function OrderDetailScreen() {
-  const { productId } = useLocalSearchParams<{ productId: string }>();
-  const product = menuData.products.find((item) => item.id === productId);
+  const { productId } = useLocalSearchParams();
+  const resolvedProductId = Array.isArray(productId) ? productId[0] : productId;
+  const product = menuData.products.find((item) => item.id === resolvedProductId);
   const { addItem } = useCart();
 
-  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(
-    product ? getInitialOptions(product) : {}
-  );
-  const [selectedAddOnIds, setSelectedAddOnIds] = useState<string[]>([]);
-  const [quantity, setQuantity] = useState<number>(1);
+  const [selectedOptions, setSelectedOptions] = useState(product ? getInitialOptions(product) : {});
+  const [selectedAddOnIds, setSelectedAddOnIds] = useState([]);
+  const [quantity, setQuantity] = useState(1);
 
   const unitPrice = useMemo(() => {
     if (!product) {
@@ -56,7 +54,7 @@ export default function OrderDetailScreen() {
     );
   }
 
-  const toggleAddOn = (addOnId: string) => {
+  const toggleAddOn = (addOnId) => {
     setSelectedAddOnIds((prev) =>
       prev.includes(addOnId) ? prev.filter((id) => id !== addOnId) : [...prev, addOnId]
     );

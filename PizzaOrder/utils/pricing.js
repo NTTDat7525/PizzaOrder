@@ -1,10 +1,4 @@
-import type { Product, SelectedOptions } from '@/types/menu';
-
-export function calculateUnitPrice(
-  product: Product,
-  selectedOptions: SelectedOptions,
-  selectedAddOnIds: string[]
-): number {
+export function calculateUnitPrice(product, selectedOptions, selectedAddOnIds) {
   const optionDelta = product.optionGroups.reduce((sum, group) => {
     const selectedId = selectedOptions[group.id];
     const selectedOption = group.options.find((option) => option.id === selectedId);
@@ -18,15 +12,11 @@ export function calculateUnitPrice(
   return product.basePrice + optionDelta + addOnTotal;
 }
 
-export function formatCurrency(amount: number): string {
+export function formatCurrency(amount) {
   return `VND ${amount.toLocaleString('vi-VN')}`;
 }
 
-export function buildCartItemKey(
-  productId: string,
-  selectedOptions: SelectedOptions,
-  selectedAddOnIds: string[]
-): string {
+export function buildCartItemKey(productId, selectedOptions, selectedAddOnIds) {
   const optionParts = Object.keys(selectedOptions)
     .sort()
     .map((groupId) => `${groupId}:${selectedOptions[groupId]}`)

@@ -1,12 +1,11 @@
-import { StyleSheet, Text, View, Pressable, FlatList, SafeAreaView } from 'react-native';
+import { FlatList, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
 import { useCart } from '@/contexts/cart-context';
-import type { MenuData, Product } from '@/types/menu';
 import { formatCurrency } from '@/utils/pricing';
 
-const menuData = require('@/data/menu.json') as MenuData;
+const menuData = require('@/data/menu.json');
 
-function findProduct(productId: string): Product | undefined {
+function findProduct(productId) {
   return menuData.products.find((product) => product.id === productId);
 }
 
@@ -53,7 +52,9 @@ export default function CartScreen() {
               <View style={styles.itemCard}>
                 <Text style={styles.itemName}>{item.name}</Text>
                 <Text style={styles.itemMeta}>{optionSummary || 'Default options'}</Text>
-                <Text style={styles.itemMeta}>{addOnSummary ? `Add-ons: ${addOnSummary}` : 'No add-ons'}</Text>
+                <Text style={styles.itemMeta}>
+                  {addOnSummary ? `Add-ons: ${addOnSummary}` : 'No add-ons'}
+                </Text>
 
                 <View style={styles.itemBottomRow}>
                   <View style={styles.qtyRow}>
