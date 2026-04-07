@@ -1,0 +1,154 @@
+{
+  "categories": [
+    {
+      "id": "classic",
+      "name": "Classic"
+    },
+    {
+      "id": "premium",
+      "name": "Premium"
+    },
+    {
+      "id": "special",
+      "name": "Special"
+    }
+  ],
+  "products": [
+    {
+      "id": "margherita",
+      "name": "Margherita",
+      "description": "Tomato sauce, mozzarella, basil",
+      "categoryId": "classic",
+      "basePrice": 120000,
+      "optionGroups": [
+        {
+          "id": "size",
+          "title": "Size",
+          "required": true,
+          "options": [
+            { "id": "size_s", "name": "Small", "priceDelta": 0 },
+            { "id": "size_m", "name": "Medium", "priceDelta": 30000 },
+            { "id": "size_l", "name": "Large", "priceDelta": 60000 }
+          ]
+        },
+        {
+          "id": "crust",
+          "title": "Crust",
+          "required": true,
+          "options": [
+            { "id": "thin", "name": "Thin", "priceDelta": 0 },
+            { "id": "thick", "name": "Thick", "priceDelta": 15000 },
+            { "id": "cheese_crust", "name": "Cheese Crust", "priceDelta": 25000 }
+          ]
+        }
+      ],
+      "addOns": [
+        { "id": "extra_cheese", "name": "Extra Cheese", "price": 20000 },
+        { "id": "mushroom", "name": "Mushroom", "price": 15000 },
+        { "id": "olive", "name": "Black Olive", "price": 18000 }
+      ]
+    },
+    {
+      "id": "pepperoni",
+      "name": "Pepperoni",
+      "description": "Pepperoni, mozzarella, oregano",
+      "categoryId": "classic",
+      "basePrice": 145000,
+      "optionGroups": [
+        {
+          "id": "size",
+          "title": "Size",
+          "required": true,
+          "options": [
+            { "id": "size_s", "name": "Small", "priceDelta": 0 },
+            { "id": "size_m", "name": "Medium", "priceDelta": 35000 },
+            { "id": "size_l", "name": "Large", "priceDelta": 65000 }
+          ]
+        },
+        {
+          "id": "spice",
+          "title": "Spice Level",
+          "required": true,
+          "options": [
+            { "id": "mild", "name": "Mild", "priceDelta": 0 },
+            { "id": "medium", "name": "Medium", "priceDelta": 5000 },
+            { "id": "hot", "name": "Hot", "priceDelta": 10000 }
+          ]
+        }
+      ],
+      "addOns": [
+        { "id": "double_pepperoni", "name": "Double Pepperoni", "price": 30000 },
+        { "id": "jalapeno", "name": "Jalapeno", "price": 12000 },
+        { "id": "corn", "name": "Sweet Corn", "price": 10000 }
+      ]
+    },
+    {
+      "id": "truffle_beef",
+      "name": "Truffle Beef",
+      "description": "Roasted beef, truffle cream, parmesan",
+      "categoryId": "premium",
+      "basePrice": 189000,
+      "optionGroups": [
+        {
+          "id": "size",
+          "title": "Size",
+          "required": true,
+          "options": [
+            { "id": "size_s", "name": "Small", "priceDelta": 0 },
+            { "id": "size_m", "name": "Medium", "priceDelta": 45000 },
+            { "id": "size_l", "name": "Large", "priceDelta": 80000 }
+          ]
+        },
+        {
+          "id": "doneness",
+          "title": "Beef Doneness",
+          "required": true,
+          "options": [
+            { "id": "medium_rare", "name": "Medium Rare", "priceDelta": 0 },
+            { "id": "medium", "name": "Medium", "priceDelta": 0 },
+            { "id": "well_done", "name": "Well Done", "priceDelta": 0 }
+          ]
+        }
+      ],
+      "addOns": [
+        { "id": "burrata", "name": "Burrata", "price": 45000 },
+        { "id": "truffle_oil", "name": "Extra Truffle Oil", "price": 35000 },
+        { "id": "rocket", "name": "Rocket Leaves", "price": 15000 }
+      ]
+    },
+    {
+      "id": "seafood_lovers",
+      "name": "Seafood Lovers",
+      "description": "Shrimp, squid, crab stick, garlic butter",
+      "categoryId": "special",
+      "basePrice": 175000,
+      "optionGroups": [
+        {
+          "id": "size",
+          "title": "Size",
+          "required": true,
+          "options": [
+            { "id": "size_s", "name": "Small", "priceDelta": 0 },
+            { "id": "size_m", "name": "Medium", "priceDelta": 40000 },
+            { "id": "size_l", "name": "Large", "priceDelta": 75000 }
+          ]
+        },
+        {
+          "id": "sauce",
+          "title": "Sauce",
+          "required": true,
+          "options": [
+            { "id": "garlic_butter", "name": "Garlic Butter", "priceDelta": 0 },
+            { "id": "spicy_tomato", "name": "Spicy Tomato", "priceDelta": 10000 },
+            { "id": "cream", "name": "Cream Sauce", "priceDelta": 15000 }
+          ]
+        }
+      ],
+      "addOns": [
+        { "id": "extra_shrimp", "name": "Extra Shrimp", "price": 38000 },
+        { "id": "extra_squid", "name": "Extra Squid", "price": 25000 },
+        { "id": "cheese", "name": "Mozzarella", "price": 18000 }
+      ]
+    }
+  ]
+}
